@@ -1,0 +1,43 @@
+{
+    "AWSEBDockerrunversion": 2,
+    "containerDefinitions": [
+        {
+            "name": "client",
+            "image": "kalpeshkhune/multi-client",
+            "hostname": "client",
+            "essential": false,
+            "memory": 128
+        },
+        {
+            "name": "server",
+            "image": "kalpeshkhune/multi-server",
+            "hostname": "api",
+            "essential": false,
+            "memory": 128
+        },
+        {
+            "name": "worker",
+            "image": "kalpeshkhune/multi-worker",
+            "hostname": "worker",
+            "essential": false,
+            "memory": 128
+        },
+        {
+            "name":"nginx",
+            "image":"kalpeshkhune/multi-nginx",
+            "hostname": "nginx",
+            "essential": true,
+            "portMappings": [
+                {
+                    "hostPort": 80,
+                    "containerPort": 80
+                }
+            ],
+            "Links":["client","server"],
+            "memory": 128
+        }
+       
+
+    ]
+
+}
